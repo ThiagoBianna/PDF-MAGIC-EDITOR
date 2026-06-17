@@ -53,7 +53,6 @@ interface SidebarProps {
   edits: Map<string, PDFEdit>;
   onOpenLinkModal: () => void;
   
-  // Drawing Tools Props
   activeDrawingTool: 'none' | 'brush' | 'eraser' | 'text' | 'paintBucket';
   onDrawingToolChange: (tool: 'none' | 'brush' | 'eraser' | 'text' | 'paintBucket') => void;
   drawingColor: string;
@@ -63,7 +62,6 @@ interface SidebarProps {
   hasDrawingOnCurrentPage: boolean;
   onClearCurrentPageDrawing: () => void;
 
-  // Nova prop para adicionar imagem customizada
   onAddImage: (imageSrc: string, naturalWidth: number, naturalHeight: number) => void;
   isBlankPdf?: boolean;
 }
@@ -132,7 +130,6 @@ export function Sidebar({
     }
   };
 
-  // Sincroniza o campo de edição quando o item selecionado muda
   useEffect(() => {
     if (selectedItem) {
       setEditValue(selectedItem.currentText);
@@ -175,7 +172,6 @@ export function Sidebar({
     }
   }, [selectedItem]);
 
-  // Sincroniza a cor do pincel/balde de tinta com a cor da fonte quando o baldinho está ativo
   useEffect(() => {
     if (activeDrawingTool === 'paintBucket') {
       onDrawingColorChange(fontColor);
@@ -186,7 +182,6 @@ export function Sidebar({
     return !!item.bgColor && item.bgColor !== 'transparent';
   }
 
-  // Filtra itens de texto na página atual
   const filteredItems = pageMetadata
     ? pageMetadata.textItems.filter((item) =>
         item.text.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -239,7 +234,6 @@ export function Sidebar({
 
     editor.focus();
 
-    // Verifica se existe uma seleção ativa dentro do editor
     const selection = window.getSelection();
     let hasSelection = false;
     if (selection && selection.rangeCount > 0) {

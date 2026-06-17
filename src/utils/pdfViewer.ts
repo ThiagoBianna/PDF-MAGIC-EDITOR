@@ -9,7 +9,6 @@ export async function parsePdfDocument(
   onProgress?: (progress: number) => void
 ): Promise<{ numPages: number; pages: PDFPageMetadata[] }> {
   try {
-    // Carrega o documento PDF
     const loadingTask = pdfjsLib.getDocument({
       data: new Uint8Array(arrayBuffer.slice(0)),
       useSystemFonts: true,
@@ -30,29 +29,23 @@ export async function parsePdfDocument(
 
     for (let pageIndex = 0; pageIndex < numPages; pageIndex++) {
       const page = await pdfDoc.getPage(pageIndex + 1);
-      const view = page.view; // Coordenadas [x_min, y_min, x_max, y_max]
+      const view = page.view;
       
       const width = view[2] - view[0];
       const height = view[3] - view[1];
 
-      // Extrai os blocos de texto
       const textContent = await page.getTextContent();
       const textItems: PDFTextItem[] = [];
 
       textContent.items.forEach((item: any, itemIndex: number) => {
-        // Filtra itens vazios que não contêm visibilidade de texto real
         if (!item.str || item.str.trim() === '') {
           return;
         }
 
-        // Matriz de transformação: [a, b, c, d, e, f]
-        // transform[4] = coordenada X original (escala 1.0, bottom-left)
-        // transform[5] = coordenada Y original (escala 1.0, bottom-left)
         const transform = item.transform;
         const x = transform[4];
         const y = transform[5];
         
-        // Estima o tamanho da fonte com base na altura ou escala vertical de transformação
         const fontSize = Math.abs(transform[3]) || Math.abs(transform[0]) || 12;
         const textWidth = item.width || 50;
         const textHeight = item.height || fontSize;
@@ -121,7 +114,6 @@ export function renderPdfPageToCanvas(
     canvas.width = viewport.width;
     canvas.height = viewport.height;
 
-    // Renderiza a página do PDF no canvas do HTML5
     const renderContext = {
       canvasContext: context,
       viewport: viewport,
@@ -152,7 +144,6 @@ export function renderPdfPageToCanvas(
         try {
           currentRenderTask.cancel();
         } catch (e) {
-          // ignore e.g. if already finished or canceled
         }
       }
     }

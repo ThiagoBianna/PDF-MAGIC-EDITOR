@@ -12,7 +12,7 @@ interface PdfCanvasProps {
   selectedItemId: string | null;
   onItemSelect: (item: PDFTextItem) => void;
   scale: number;
-  // Drawing Tools Props
+
   activeDrawingTool: 'none' | 'brush' | 'eraser' | 'text' | 'crop' | 'paintBucket';
   drawingColor: string;
   drawingThickness: number;
@@ -65,11 +65,9 @@ export function PdfCanvas({
   const [isRendering, setIsRendering] = useState(false);
   const [renderError, setRenderError] = useState<string | null>(null);
 
-  // Crop selection states
   const [cropSelection, setCropSelection] = useState<{ startX: number; startY: number; endX: number; endY: number } | null>(null);
   const isSelectingCrop = useRef(false);
 
-  // Dragging and Resizing State
   const [activeAction, setActiveAction] = useState<{
     type: 'drag' | 'resize';
     itemId: string;
@@ -86,7 +84,7 @@ export function PdfCanvas({
     if (activeDrawingTool !== 'none') return;
     e.stopPropagation();
     if (onStartDragOrResize) onStartDragOrResize();
-    // Do not prevent default for clicks on hyperlinks or form inputs to remain editable, but suppress dragging browser defaults
+
     setActiveAction({
       type: 'drag',
       itemId: item.id,
@@ -157,7 +155,6 @@ export function PdfCanvas({
     });
   };
 
-  // Drag and Resize handler Effects
   useEffect(() => {
     if (!activeAction || !pageMetadata) return;
 
@@ -346,21 +343,19 @@ export function PdfCanvas({
   const drawingCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const isDrawingRef = useRef(false);
 
-  // Redesenha os traços existentes quando muda a página ou a escala (re-renderiza)
   useEffect(() => {
     const canvas = drawingCanvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Limpa o canvas para começar limpo
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     const drawingDataUrl = pageDrawings[pageIndex];
     if (drawingDataUrl && drawingDataUrl !== '') {
       const img = new Image();
       img.onload = () => {
-        // Limpa novamente antes de pintar para garantir sem ghosting
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
       };
@@ -368,7 +363,6 @@ export function PdfCanvas({
     }
   }, [pageIndex, scale, pageDrawings[pageIndex]]);
 
-  // Captura de coordenadas relativas ao Canvas
   const getCoordinates = (
     e: React.MouseEvent<any> | React.TouchEvent<any>
   ) => {
@@ -424,7 +418,6 @@ export function PdfCanvas({
         );
         const croppedImageSrc = tempCanvas.toDataURL('image/png');
 
-        // Converter para pontos de espaço de PDF
         const pdfX = rectX / scale;
         const pdfY = pageMetadata.height - ((rectY + rectHeight) / scale);
         const pdfW = rectWidth / scale;
@@ -446,7 +439,6 @@ export function PdfCanvas({
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
     if (!ctx) return;
 
-    // Converter Hex para RGBA
     const hex = fillColorHex.replace('#', '');
     const r = parseInt(hex.substring(0, 2), 16);
     const g = parseInt(hex.substring(2, 4), 16);
@@ -690,7 +682,7 @@ export function PdfCanvas({
           }}
         >
           {pageMetadata.textItems.map((item) => {
-            // Se for máscara branca de cobertura (gerada no Crop), renderiza como retângulo limpo embaixo sem interferir nos controles
+
             if (item.id.includes('-cover-')) {
               const itemLeft = item.x * scale;
               const itemWidth = item.width * scale;
