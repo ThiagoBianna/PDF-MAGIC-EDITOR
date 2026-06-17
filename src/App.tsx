@@ -950,33 +950,36 @@ export default function App() {
 
               <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-4 mt-12 mb-6" id="saas-benefits-grid">
                 <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-xs text-left">
-                  <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 mb-3.5">
-
-                    <Palette className="w-4 h-4" />
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 shrink-0">
+                      <Palette className="w-4 h-4" />
+                    </div>
+                    <h3 className="font-bold text-slate-900 text-sm">Design Original</h3>
                   </div>
-                  <h3 className="font-bold text-slate-900 text-sm">Design Original</h3>
                   <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
                     Modifique arquivos sem bagunçar nada. Garantindo que seu PDF continue com um visual profissional após edição.
                   </p>
                 </div>
 
                 <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-xs text-left">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600 mb-3.5">
-
-                    <ShieldCheck className="w-4 h-4" />
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0">
+                      <ShieldCheck className="w-4 h-4" />
+                    </div>
+                    <h3 className="font-bold text-slate-900 text-sm">100% Seguro</h3>
                   </div>
-                  <h3 className="font-bold text-slate-900 text-sm">100% Seguro</h3>
                   <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
                     Todo o processo de edição é feito direto no seu navegador, nós não recebemos seus dados
                   </p>
                 </div>
 
                 <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-xs text-left">
-                  <div className="w-8 h-8 rounded-lg bg-yellow-50 flex items-center justify-center text-yellow-600 mb-3.5">
-
-                    <Zap className="w-4 h-4" />
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-yellow-50 flex items-center justify-center text-yellow-600 shrink-0">
+                      <Zap className="w-4 h-4" />
+                    </div>
+                    <h3 className="font-bold text-slate-900 text-sm">Fácil e Rápido</h3>
                   </div>
-                  <h3 className="font-bold text-slate-900 text-sm">Fácil e Rápido</h3>
                   <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
                     Altere com tranquilidade qualquer texto. De forma visual, rápida e intuitiva, sem precisar de nenhuma configuração.
                   </p>
