@@ -1,0 +1,21 @@
+{
+  "short_name": "PDF Magic",
+  "name": "PDF Magic Editor",
+  "icons": [
+    {
+      "src": "/logo.jpg",
+      "type": "image/jpeg",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/logo.jpg",
+      "type": "image/jpeg",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "theme_color": "#1e293b",
+  "display": "standalone",
+  "orientation": "portrait"
+}
