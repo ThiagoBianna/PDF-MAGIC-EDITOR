@@ -881,7 +881,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setIsCreateDropdownOpen(!isCreateDropdownOpen)}
-                className="text-xs font-bold text-white bg-emerald-700 hover:bg-emerald-800 py-2.5 px-4 rounded-lg flex items-center gap-1.5 shadow-xs transition-all cursor-pointer hover:shadow-xs border border-white"
+                className="text-xs font-bold text-white bg-emerald-700 hover:bg-emerald-800 py-2.5 px-4 rounded-lg flex items-center gap-1.5 shadow-xs transition-all cursor-pointer hover:shadow-xs border border-emerald-700"
                 title="Criar PDF A4 em Branco"
               >
                 <Plus className="w-4 h-4" />

@@ -65,7 +65,7 @@ export function DropZone({ onFileSelect, isLoading, loadingProgress }: DropZoneP
             >
               <AlertTriangle className="w-5 h-5 shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold">Não foi possível carregar</p>
+                <p className="font-semibold">Isto não é um PDF!</p>
                 <p className="text-red-600/90 mt-0.5">{errorText}</p>
               </div>
             </motion.div>
